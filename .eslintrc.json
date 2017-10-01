@@ -1,0 +1,39 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "jsx-quotes": ["error", "prefer-single"],
+        "arrow-parens": ["error", "as-needed"],
+        "prefer-arrow-callback": ["error", {"allowNamedFunctions": false, "allowUnboundThis": false}],
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "warn",
+        "no-multiple-empty-lines": ["error", {"max": 2, "maxBOF": 1}],
+        "constructor-super": "warn",
+        "semi": ["error", "never"],
+        "quotes": ["error", "single"],
+        "valid-typeof": "warn",
+        "comma-dangle": ["error", {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "ignore"
+        }]
+    }
+}

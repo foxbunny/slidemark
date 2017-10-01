@@ -1,0 +1,95 @@
+/**
+ * (c) 2017 Hajime Yamasaki Vukelic
+ * All rights reserved.
+ */
+
+.presenterMode
+  background #ddd
+  min-height 100vh
+  padding 2rem 1rem 4rem
+
+.progress
+  background #335588
+  height 4px
+  left 0
+  position fixed
+  top 4px
+  z-index 1
+
+.slide
+  align-items center
+  background white
+  bottom 0
+  cursor pointer
+  display flex
+  font-family sans-serif
+  font-size 20pt
+  left 0
+  padding 2rem
+  position fixed
+  right 0
+  top 0
+
+.slide_presenterMode
+  box-shadow 0 2px 8px rgba(0, 0, 0, 0.3)
+  font-size 13px
+  height calc(9 / 16 * 800px)
+  margin 0 auto 2rem
+  position static
+  width 800px
+
+.titleSlide
+  background #335588
+  color white
+
+.slideContents
+  width 100%
+
+  pre
+    background #333
+    color #fff
+    padding 1rem
+
+  table
+    border-collapse collapse
+    margin: 1rem
+    width 100%
+
+  th, td
+    border-collapse collapse
+
+  th
+    font-weight bold
+    text-align left
+
+  tbody > tr
+    border-top 1px solid #ddd
+
+  strong
+    font-weight bold
+
+  em
+    font-style italic
+
+// {{{ The order of the following 3 matters!
+
+.slideContents_medium
+  font-size 160%
+
+.slideContents_shortish
+  text-align center
+
+.slideContents_short
+  font-size 250%
+
+// }}}
+
+.notes
+  display none
+
+.notes_presenterMode
+  display block
+  padding 2rem
+  width 800px
+  margin 0 auto
+  background #efefef
