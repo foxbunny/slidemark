@@ -3,13 +3,24 @@
  * All rights reserved.
  */
 
+const hljs = require('highlight.js')
 const jsdom = require('jsdom')
 const Remarkable = require('remarkable')
 const loaderUtils = require('loader-utils')
 
 
 const asHTML = source => {
-  const parser = new Remarkable()
+  const parser = new Remarkable({
+    highlight: (str, lang) => {
+      try {
+        return (lang && hljs.getLanguage(lang)
+          ? hljs.highlight(lang, str)
+          : hljs.highlightAuto(str)).value
+      } catch (e) {
+        return ''
+      }
+    },
+  })
   const html = parser.render(source)
   const dom = jsdom.JSDOM.fragment(`<div>${html}</div>`)
   ;[].forEach.call(dom.querySelectorAll('img'), img => {
