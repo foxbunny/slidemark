@@ -117,6 +117,18 @@ Explain why this slide is so awesome.
 
 - Click to advance
 
+## Hosting the slideshow
+
+The slideshow can be built into a stand-alone HTML/JavaScript/CSS bundle and
+hosted on a normal HTTP server, GitHub pages, and the like. The build the bundle
+run:
+
+```
+npm run build
+```
+
+The output is dumped into the `build` folder which is created as needed.
+
 ## License
 
 This code is made available to you under the terms of the MIT license. See the
