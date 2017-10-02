@@ -38,6 +38,24 @@ const asSimpleHTML = source => {
 }
 
 
+const lineCount = slide => {
+  const dom = jsdom.JSDOM.fragment(new Remarkable().render(slide))
+  return [
+    dom.querySelectorAll('p').length,
+    dom.querySelectorAll('blockquote').length,
+    dom.querySelectorAll('li').length,
+    dom.querySelectorAll('br').length,
+    [].reduce.call(
+      dom.querySelectorAll('pre code'),
+      (s, pre) => {
+        return s + (pre.textContent || '').split('\n').length
+      },
+      0
+    ),
+  ].reduce((x, y) => x + y)
+}
+
+
 const parseSlide = source => {
   const slides = source.split(/\+{4,}/g).map(doc => {
     const [slide, notes, style] = doc.split(/~{4,}/g)
@@ -45,7 +63,7 @@ const parseSlide = source => {
     {
       slide: ${asHTML(slide)},
       notes: ${asSimpleHTML(notes)},
-      lines: ${slide.trim().split('\n\n').filter(s => s !== '').length},
+      lines: ${lineCount(slide)},
       style: ${JSON.stringify(style && style.trim())},
     }
     `
