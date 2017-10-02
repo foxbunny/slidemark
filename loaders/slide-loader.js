@@ -27,13 +27,13 @@ const asSimpleHTML = source => {
 
 
 const parseSlide = source => {
-  const [slide, notes] = source.split('~~~~')
+  const [slide, notes, style] = source.split('~~~~')
   return `
   module.exports = {
     slide: ${asHTML(slide)},
     notes: ${asSimpleHTML(notes)},
-    words: ${slide.trim().split(/\s+/).length},
-    lines: ${slide.trim().split('\n').length}
+    lines: ${slide.trim().split('\n').length},
+    style: ${JSON.stringify(style && style.trim())},
   };
   `
 }

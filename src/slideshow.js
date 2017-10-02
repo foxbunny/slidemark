@@ -118,11 +118,11 @@ const view = css => ({model, act}) => (current =>
         />
       : undefined}
     <div
-      class={{
+      class={Object.assign({
         [css.slide]: true,
         [css.slide_presenterMode]: model.presenterMode,
         [css.titleSlide]: model.currentSlide === 0,
-      }}
+      }, current.style ? {[css[current.style]]: true} : {})}
       key={`slide-${model.currentSlide}`}
       doc-keydown={E.from(keyEvent(model.currentSlide), (...args) => act(...args)())}
       on-click={act('toSlide', model.currentSlide + 1)}

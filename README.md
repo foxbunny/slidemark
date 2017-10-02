@@ -9,12 +9,12 @@ Slideshow application for the brave and the JavaScript nerds.
 - Support for separate presenter and audience views (in separate tabs)
 - Fully keyboard-controlled
 - Themable with [Stylus](http://stylus-lang.com/)
+- Per-slide styling
 
 Coming soon:
 
 - Syntax highlighting for source code
 - Customizable transitions
-- Per-slide styling
 - Bookmarkable slides
 
 ## Screenshot
@@ -102,6 +102,22 @@ This is my slide
 ~~~~
 
 Explain why this slide is so awesome.
+```
+
+After the presenter notes, we can add another `~~~~` line to specify the slide
+style. Slide style is just a single line that represents the class name for the
+slide:
+
+```markdown
+This is my slide
+
+~~~~
+
+Explain why this slide is so awesome.
+
+~~~~
+
+special
 ```
 
 ## Keyboard controls
