@@ -83,6 +83,7 @@ const keyEvent = currentSlide => e => {
 const transitions = {
   zigZag: {
     in: {
+      transition: 'opacity 0.7s, transform 0.7s',
       transform: 'translateX(-100vw)',
       opacity: 0,
       delayed: {
@@ -96,6 +97,7 @@ const transitions = {
     },
   },
   xFade: {
+    transition: 'opacity 0.7s',
     in: {
       opacity: 0,
       delayed: {
@@ -129,7 +131,6 @@ const view = css => ({model, act}) => (current =>
       style={model.presenterMode
         ? {}
         : {
-            transition: 'all 0.7s',
             ...transitions.zigZag.in,
             remove: transitions.zigZag.out,
           }
