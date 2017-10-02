@@ -11,10 +11,10 @@ const E = duckweed.events
 // MODEL
 
 
-const init = slides => ({
+const init = (slides, presenterMode) => ({
   currentSlide: 0,
   slides,
-  presenterMode: false,
+  presenterMode,
 })
 
 

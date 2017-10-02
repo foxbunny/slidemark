@@ -11,9 +11,9 @@ const slideshow = require('./slideshow')
 const syncTabs = require('./sync-tabs')
 
 
-const init = (slides, theme) =>
+const init = (slides, theme, mode = false) =>
   duckweed.runner(
-    slideshow.init(slides),
+    slideshow.init(slides, mode),
     slideshow.actions,
     slideshow.view(theme),
     {middleware: [syncTabs.middleware], plugins: [syncTabs.plugin]}

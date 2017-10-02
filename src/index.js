@@ -8,4 +8,4 @@ const defaultTheme = require('./default-theme.styl')
 
 const content = require('content')
 
-init(content.slides, content.theme || defaultTheme)
+init(content.slides, content.theme || defaultTheme, content.presenter)
