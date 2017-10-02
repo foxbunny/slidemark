@@ -7,9 +7,6 @@ const duckweed = require('duckweed')
 
 const E = duckweed.events
 
-const LEFT = 'l'
-const RIGHT = 'r'
-
 
 // MODEL
 
@@ -17,7 +14,6 @@ const RIGHT = 'r'
 const init = slides => ({
   currentSlide: 0,
   slides,
-  direction: RIGHT,
   presenterMode: false,
 })
 
@@ -33,7 +29,7 @@ const actions = {
     patch(model =>
       index < 0 || index >= model.slides.length
         ? model
-        : {...model, currentSlide: index, direction: model.currentSlide > index ? LEFT : RIGHT })
+        : {...model, currentSlide: index})
   },
   togglePresenterMode: patch =>
     patch(model => ({...model, presenterMode: !model.presenterMode})),
@@ -84,33 +80,33 @@ const keyEvent = currentSlide => e => {
 }
 
 
-const transition = direction =>
-  Object.assign(
-    {
-      transition: 'transform 0.7s',
+const transitions = {
+  zigZag: {
+    in: {
+      transform: 'translateX(-100vw)',
+      opacity: 0,
       delayed: {
         opacity: 1,
         transform: 'translateX(0)',
       },
     },
-    direction === RIGHT
-      ? {
-          transform: 'translateX(100vw)',
-          opacity: 0.5,
-          remove: {
-            opacity: 0.5,
-            transform: 'translateX(-100vw)',
-          },
-        }
-      : {
-        transform: 'translateX(-100vw)',
-        opacity: 0.5,
-        remove: {
-          opacity: 0.5,
-          transform: 'translateX(100vw)',
-        },
-      }
-  )
+    out: {
+      opacity: 0,
+      transform: 'translateY(100vh)',
+    },
+  },
+  xFade: {
+    in: {
+      opacity: 0,
+      delayed: {
+        opacity: 1,
+      },
+    },
+    out: {
+      opacity: 0,
+    },
+  },
+}
 
 
 const view = css => ({model, act}) => (current =>
@@ -132,7 +128,11 @@ const view = css => ({model, act}) => (current =>
       on-click={act('toSlide', model.currentSlide + 1)}
       style={model.presenterMode
         ? {}
-        : transition(model.direction)
+        : {
+            transition: 'all 0.7s',
+            ...transitions.zigZag.in,
+            remove: transitions.zigZag.out,
+          }
       }
     >
       <div
