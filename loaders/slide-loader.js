@@ -45,7 +45,7 @@ const parseSlide = source => {
     {
       slide: ${asHTML(slide)},
       notes: ${asSimpleHTML(notes)},
-      lines: ${slide.trim().split('\n').length},
+      lines: ${slide.trim().split('\n\n').filter(s => s !== '').length},
       style: ${JSON.stringify(style && style.trim())},
     }
     `
