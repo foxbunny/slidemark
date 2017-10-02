@@ -18,7 +18,7 @@ const init = slides => ({
   currentSlide: 0,
   slides,
   direction: RIGHT,
-  presenterMode: true,
+  presenterMode: false,
 })
 
 
