@@ -10,7 +10,8 @@ const loaderUtils = require('loader-utils')
 
 
 const asHTML = source => {
-  const parser = new Remarkable({
+  const parser = new Remarkable('full', {
+    html: true,
     highlight: (str, lang) => {
       try {
         return (lang && hljs.getLanguage(lang)
