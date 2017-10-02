@@ -10,10 +10,10 @@ Slideshow application for the brave and the JavaScript nerds.
 - Fully keyboard-controlled
 - Themable with [Stylus](http://stylus-lang.com/)
 - Per-slide styling
+- Syntax highlighting for source code
 
 Coming soon:
 
-- Syntax highlighting for source code
 - Customizable transitions
 - Bookmarkable slides
 
@@ -61,11 +61,7 @@ index may look like this:
 
 ```javascript
 module.exports = {
-  slides: [
-    require('./00.md'),
-    require('./01.md'),
-    require('./02.md'),
-  ],
+  slides: require('./slides.md'),
 }
 ```
 
@@ -76,11 +72,7 @@ If you want to use custom styling, add a theme property to the index:
 
 ```javascript
 module.exports = {
-  slides: [
-    require('./00.md'),
-    require('./01.md'),
-    require('./02.md'),
-  ],
+  slides: require('./slides.md'),
   theme: require('./mytheme.styl'),
 }
 ```
@@ -88,13 +80,48 @@ module.exports = {
 The theme file must be in Stylus format. Look at the
 [`src/default-theme.styl`](./src/default-theme.styl) for an example theme.
 
+You can also specify whether the show starts in presenter or audience mode by
+adding a `presenter` property which can be either `true` or `false`:
+
+```javascript
+module.exports = {
+  slides: require('./slides.md'),
+  theme: require('./mytheme.styl'),
+  presenter: true,
+}
+```
+
 ## Slide format
 
-Slides are written as plain Markdown files. They support GitHub-style code
-blocks, tables, images, and the usual Markdown formatting.
+Slides are written in a single Markdown file.
 
-The document may contain a single `~~~~` line (four tildes), which identifies a
-split between the slide content and presenter notes. For example:
+Individual slides are divided by lines containing at least 4 consecutive pluses:
+
+```
+++++
+```
+
+It is recommended to use at least 80, though, for clearer separation.
+
+They support GitHub-style code blocks, tables, images, HTML, and the usual
+Markdown formatting.
+
+The slides may contain a sections delimited by at least 4 consecutive tildes:
+
+````
+~~~~
+````
+
+These sections are:
+
+- slide content (required)
+- presenter notes
+- style
+
+### Presenter notes
+
+A presenter note is some Markdown code that is shown below a slide in the
+presenter mode. For example:
 
 ```markdown
 This is my slide
@@ -104,9 +131,11 @@ This is my slide
 Explain why this slide is so awesome.
 ```
 
-After the presenter notes, we can add another `~~~~` line to specify the slide
-style. Slide style is just a single line that represents the class name for the
-slide:
+### Style
+
+Slides can be given additional class names. In the following example, the slide
+uses a `special` class. This class can be included in the theme Stylus file to
+modify the appearance of the slide.
 
 ```markdown
 This is my slide

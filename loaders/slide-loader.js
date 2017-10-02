@@ -39,15 +39,18 @@ const asSimpleHTML = source => {
 
 
 const parseSlide = source => {
-  const [slide, notes, style] = source.split('~~~~')
-  return `
-  module.exports = {
-    slide: ${asHTML(slide)},
-    notes: ${asSimpleHTML(notes)},
-    lines: ${slide.trim().split('\n').length},
-    style: ${JSON.stringify(style && style.trim())},
-  };
-  `
+  const slides = source.split(/\+{4,}/g).map(doc => {
+    const [slide, notes, style] = doc.split(/~{4,}/g)
+    return `
+    {
+      slide: ${asHTML(slide)},
+      notes: ${asSimpleHTML(notes)},
+      lines: ${slide.trim().split('\n').length},
+      style: ${JSON.stringify(style && style.trim())},
+    }
+    `
+  })
+  return `module.exports = [${slides.join(',')}]`
 }
 
 
