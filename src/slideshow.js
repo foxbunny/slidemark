@@ -24,6 +24,7 @@ const init = slides => ({
 
 // ACTIONS
 
+
 const actions = {
   toSlide: (patch, index) => {
     if (index == null) {
@@ -82,6 +83,7 @@ const keyEvent = currentSlide => e => {
   }
 }
 
+
 const transition = direction =>
   Object.assign(
     {
@@ -109,6 +111,7 @@ const transition = direction =>
         },
       }
   )
+
 
 const view = css => ({model, act}) => (current =>
   <div class={{[css.presenterMode]: model.presenterMode}}>
