@@ -31,6 +31,9 @@ const actions = {
         ? model
         : {...model, currentSlide: index})
   },
+  toLastSlide: patch => {
+    patch(model => ({...model, currentSlide: model.slides.length - 1}))
+  },
   togglePresenterMode: patch =>
     patch(model => ({...model, presenterMode: !model.presenterMode})),
 }
@@ -46,6 +49,7 @@ const KEYS = {
   lArrow: 37,
   rArrow: 39,
   space: 32,
+  tab: 9,
 }
 
 
@@ -67,6 +71,11 @@ const keyEvent = currentSlide => e => {
     case KEYS.esc:
       e.preventDefault()
       return ['toSlide', 0]
+
+    // Go to last slide
+    case KEYS.tab:
+      e.preventDefault()
+      return ['toLastSlide']
 
     // Toggle presenter/audience
     case KEYS.enter:

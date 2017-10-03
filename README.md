@@ -157,6 +157,7 @@ special
 | Previous slide                    | `Backspace` or `Left arrow` |
 | Toggle presenter/audience mode    | `Enter`                     |
 | Back to start                     | `Esc`                       |
+| Go to end                         | `Tab`                       |
 
 ## Mouse controls
 
