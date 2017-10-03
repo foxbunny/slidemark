@@ -57,17 +57,19 @@ const lineCount = slide => {
 
 
 const parseSlide = source => {
-  const slides = source.split(/\+{4,}/g).map(doc => {
-    const [slide, notes, style] = doc.split(/~{4,}/g)
-    return `
-    {
-      slide: ${asHTML(slide)},
-      notes: ${asSimpleHTML(notes)},
-      lines: ${lineCount(slide)},
-      style: ${JSON.stringify(style && style.trim())},
-    }
-    `
-  })
+  const slides = source
+    .split(/^\+{4,}$/gm)
+    .map(doc => {
+      const [slide, notes, style] = doc.split(/^\.{4,}$/gm)
+      return `
+      {
+        slide: ${asHTML(slide)},
+        notes: ${asSimpleHTML(notes)},
+        lines: ${lineCount(slide)},
+        style: ${JSON.stringify(style && style.trim())},
+      }
+      `
+    })
   return `module.exports = [${slides.join(',')}]`
 }
 

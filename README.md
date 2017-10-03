@@ -106,10 +106,10 @@ It is recommended to use at least 80, though, for clearer separation.
 They support GitHub-style code blocks, tables, images, HTML, and the usual
 Markdown formatting.
 
-The slides may contain a sections delimited by at least 4 consecutive tildes:
+The slides may contain a sections delimited by at least 4 consecutive periods:
 
 ````
-~~~~
+....
 ````
 
 These sections are:
